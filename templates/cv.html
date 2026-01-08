@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row" id="section-spacer"></div>
+<div class="col-12 center">
+  <h1>{{ section.title }}</h1>
+</div>
+
+
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-8" id="cvcontent">
+    {{ section.content | safe }}
+  </div>
+</div>
+
+{% if page.extra.show_badges or section.extra.show_badges %}
+<div class="row badges">
+<a href="https://www.credential.net/c847123d-78a5-450d-b1d4-8db0b3221166?key=38c41d492137cf9d476b779012c7c648735bd0c5eb4c7a29b2695cc8e1032eda"><img alt="Professional Cloud Architect" src="/images/gcp-sa.webp" /></a>
+<a href="https://www.youracclaim.com/badges/3be48453-20f2-474a-b172-9ffa3f0b57ae/public_url"><img alt="AWS Certified Solutions Architect Professional"  src="/images/aws-certified-solutions-architect-professional.webp" /></a>
+</div>
+{% endif %}
+<div class="row">
+  <div class="col-12" id="printwrapper"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,206 @@
+
+    
+    
+  
+
+
+
+
+  
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head
+  data-base-url="http://frontier-ring.github.io/"
+  data-build-search-index="true">
+
+  <meta charset="utf-8">
+  <title>Announcing Velarium - blockchain execution at scale</title>
+
+  <meta name="description" content="Velarium announcement blog post.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="cloud,infrastructure,security,management,migration">
+  <link type="text/css" rel="stylesheet" href="http://frontier-ring.github.io/css/simple-grid.css?v=08012026144239">
+  <link type="text/css" rel="stylesheet" href="http://frontier-ring.github.io/css/main.css?v=08012026144239">
+  <link type="text/css" rel="stylesheet" href="http://frontier-ring.github.io/css/print.css?v=08012026144239" media="print">
+  <link rel="icon" type="image/png" href="http://frontier-ring.github.io/images/favicon.webp">
+  
+  
+</head>
+<body>
+  <div class="container body">
+        <div class="row header"> <!-- START HEADER -->
+      <div class="col-2 left">
+        <div id="logo-img">
+          <img src="http://frontier-ring.github.io/images/logo.webp">
+	      </div>
+      </div>
+      <div class="col-10 right">
+        <div id="menu-wrapper">
+          <div id="cSwitch"><a href="#" id="themeIcon"></a></div>
+          <div id="topmenu">
+            <ul>
+            
+              <li><a href="http://frontier-ring.github.io/" class="topmenu">index</a></li>
+            
+              <li><a href="http://frontier-ring.github.io/docs" class="topmenu">docs</a></li>
+            
+              <li><a href="http://frontier-ring.github.io/features" class="topmenu">features</a></li>
+            
+              <li><a href="http://frontier-ring.github.io/notes" class="topmenu active">notes</a></li>
+            
+            </ul>
+          </div><div id="searchBox">  
+            <label for="search"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg></label>
+            <input id="searchInput" name="search">
+          </div></div>
+      </div>
+    </div><!-- END HEADER --><div class="row">
+      <div class="col-12">
+          <div id="sResults">
+            <ul id="sResultsUL" class="search-results">
+            </ul>
+          </div>
+      </div>
+    </div>
+    <script src="http://frontier-ring.github.io/elasticlunr.min.js"></script>
+    <script src="http://frontier-ring.github.io/js/search.js"></script>
+    
+  <div class="row">
+    <div class="col-12 center"></div>
+  </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8 left" id="postcontent">
+      <div><h1>Announcing Velarium - blockchain execution at scale</h1></div>
+      
+      <div class="singlepost-tags">
+        <ul>
+          
+              
+          <li><a href="http://frontier-ring.github.io/tags/announcement/" class="singlepost-tags">#announcement</a>&nbsp;</li>
+              
+            
+        </ul>
+      </div><div class="content">
+    
+          <p>Introducing Velarium: a modular horizontally scalable transaction execution fabric.</p>
+<p>Ethereum today is effectively a <strong>single-threaded machine</strong> at the protocol level. Blocks are ordered, and within a block there is one canonical, non-overlapping execution order. Most L2s inherit this: they may parallelize internally, but what they publish still has to look like clean, serial execution.</p>
+<p>As Ethereum and the larger blockchain ecosystem move toward parallelization, we start encountering issues that heavily limit our ability to extract parallelism from transaction execution: a highly contended state, bursts of degenerate workloads, shared hot contracts that everyone hammers, and long dependency chains.</p>
+<p>The go-to solution for concurrency control is optimism (OCC) - an approach that assumes low contention rates and speculatively executes all transactions together, as if they will not conflict. If some do, the conflicted transactions are invalidated and rerun. This process continues until all transactions are resolved.</p>
+<p>In theory it should provide a significant throughput increase, but in reality this approach is hit with a ~35% conflict rate on a typical L1 block, which significantly limits the possible performance boost: most teams report gains in the 3–7× range. Other chains and rollups have different numbers, but the shape remains the same. This approach also suffers economically: while the execution head is highly parallel, its tail suffers from heavy under-utilization of the CPU, with most of the cores idling while the conflicting transaction cluster is being processed.</p>
+<p>And most importantly, OCC is very hard to horizontally scale both technically and performance-wise. To validate a block you need a global view of all reads and writes of the state for all transactions. In a single-process system that’s painful but manageable. In a cluster it turns into a distributed validation phase: nodes have to ship access metadata around, agree on which transactions to keep, and coordinate retries. As more machines are added, the cost of that coordination and the latency of the validation step grow, and the nice parallel head degenerates into a very expensive global tail.</p>
+<p>Even if we generously assume perfect scaling on the conflict-free part, a 35% conflict rate puts a hard constant-factor speedup limit. On modern CPUs with dozens of cores and deep pipelines, this leaves most of the hardware idle. OCC improves the picture, but it doesn’t come close to saturating what a single box could theoretically do, let alone a cluster.</p>
+<p>Another way of approaching this performance bottleneck is to leave Ethereum compatibility behind and introduce a new protocol and execution machinery that are friendlier to parallelism.</p>
+<p>Velarium aims to extract more parallelism than OCC-style designs can realistically reach by reframing the problem: instead of speculating on whole transactions and validating them in bulk, it focuses on how individual pieces of state are accessed and updated, and builds the execution model around that.</p>
+<p>The goal is not just to bump a “gas per second” number, but to keep every piece of hardware saturated with positive work – useful computation that actually moves the system towards a valid state.</p>
+<h3 id="where-velarium-fits">Where Velarium fits</h3>
+<p>Velarium is designed as a drop-in, modular execution fabric: it slots into an existing Ethereum-style stack between the sequencer and the state/proving layer, without asking you to change your contracts or consensus. It is not a new L1, not a DA layer, and not a prover – it’s the execution plane in between.</p>
+<h3 id="horizontally-scalable">Horizontally scalable</h3>
+<p>When software hits performance wall on a particular machine, there are fundamentally two choices available:</p>
+<ul>
+<li>scale vertically and buy a bigger and bigger box, or</li>
+<li>scale horizontally and spread the work across a multiple machines without breaking the Ethereum execution model – the illusion that everything ran sequentially.</li>
+</ul>
+<p>Velarium is built for the second option.</p>
+<p>Instead of being locked into buying expensive “monster” boxes, horizontal scalability allows running a cluster of regular machines and keep adding more. Compute, memory, disk and network can be tuned separately for your use case instead of being welded together into one expensive node. In turn, this reduces the cost of the infrastructure and makes it more predictable.</p>
+<p>Today, if you want that kind of horizontal scale and still stay within the Ethereum model, your options are extremely limited. Solana gives you parallelism, but lives in its own ecosystem; most EVM chains and L2s still scale mainly by buying bigger boxes. Velarium is built to be the missing execution fabric in that gap.</p>
+<p>The important part is that the fabric doesn’t require a classic <strong>agreement phase over the current state</strong> between those machines. There is still consensus on blocks and inputs, but the execution layer itself does not run distributed two-phase commits or global locks on fine-grained state. Each machine follows the same stream of work and the same rules. Correctness comes from the execution model, not from everybody stopping to negotiate the exact state after every step.</p>
+<p>Work is organized into batches. When a particular machine runs out of useful work in a batch – typically near the tail, where a naive system would be stuck draining a small cluster of conflicting transactions – Velarium assigns its free cores to other batches.</p>
+<p>Because batches don’t have to be drained strictly one after another on each box, you don’t get the usual long idle tails where most cores sit there waiting for a small hot spot to clear. The cluster stays saturated with <strong>positive work</strong> even when individual batches are messy.</p>
+<h3 id="execution-model-and-compatibility">Execution model and compatibility</h3>
+<p>Velarium maintains compatibility with the Ethereum execution model. While under the hood transactions are executed in arbitrary order, the result seem as if everything was done sequentially.</p>
+<p>Ensuring the results of a parallel execution are consistent with sequential is the cornerstone of any Ethereum scalability solution. Not only it does need to guarantee correctness, but also be robust and never fail, and be fast. Velarium takes a state slot centric approach and has a single rule it upholds:</p>
+<p><strong><code>For each pair of state accesses, invalid reads are disallowed.</code></strong></p>
+<p>Instead of attempting to resolve conflicts between transactions directly, Velarium’s goal is to find a valid state update path. Working at the level of individual state accesses gives the system more room to manoeuvre: there are far more ways to interleave reads and writes than there are ways to totally order whole transactions.</p>
+<p>Canonical transaction order thus becomes an emergent property of the system. The system doesn’t need to take any global steps to order the execution in a particular way - the execution converges to the required solution naturally.</p>
+<p>An important property of this rule is that it’s local. This has two important consequences:</p>
+<ul>
+<li>It’s cheap to apply - In contrast to optimistic concurrency, that requires to halt all execution and do a costly search to verify a solution, Velarium doesn’t need to stop. It immediately has the require data at hand, and in case of a conflict, the violating execution is immediately invalidated.</li>
+<li>It’s easy to apply, making it bullet proof and significantly reducing overall complexity. This simplifies implementation of advanced optimizations, that would be otherwise hard to prove for correctness.</li>
+</ul>
+<p>Because the rule is local and enforced continuously, Velarium can keep its management overhead low. There are no global validation pauses; execution flows without coordinated stalls, corrects itself locally when needed, and eventually reaches the correct state that Ethereum expects.</p>
+<h3 id="concurrency-control">Concurrency Control</h3>
+<p>Velarium doesn’t assume that transactions are highly disjoint and can be executed independently. Instead, it schedules execution deliberately, based on the available information about contract state access profiles, historical data, chain state, risk-cost analysis, and only falls back to optimistic speculation as a last resort option.</p>
+<p>Additionally, transactions aren’t scheduled as atomic blobs. Compute and state access segments are scheduled separately, allowing the scheduler to achieve three things:</p>
+<ul>
+<li><strong>Parallelize disjoint transaction segments.</strong> Transactions don’t conflict as a whole, only on parts that read and modify the same state. All other parts are free to run in parallel.</li>
+<li><strong>Make informed decisions about state access.</strong> Not all accesses are equal. Smaller transactions are cheaper to invalidate, reading a hot slot is riskier than a cold one. By examining the context around each access, the scheduler can decide whether to allow it now or defer it to a safer time.</li>
+<li><strong>Schedule special execution phases.</strong> Certain patterns can be handled in dedicated phases that reduce the impact of contention, or even eliminate it entirely for some operations (for example, read–modify–write chains with unobservable monoid updates).</li>
+</ul>
+<p>This creates more room for parallelism and lets the scheduler bend the probabilities of encountering a conflict during speculation, steering the overall execution into a low-conflict path. When a conflict is hit, the scheduler records the dependency data for all involved transactions and, after invalidation, uses that information to schedule them deliberately next time.</p>
+<p>This makes the scheduling scheme adaptive. As conflicts are encountered, the scheduler gains insight about contract behaviour and can schedule its execution with greater efficiency.</p>
+<p>In practice, the scheduler works in layers: it first tries to schedule structurally. If there’s not enough information, it attempts educated speculation. Only if there’s no information available whatsoever it falls back to blind optimistic speculation.</p>
+<p>Taken together, Velarium’s parallelization is best described as an <strong>adaptive layered concurrency control.</strong></p>
+<h3 id="adversarial-and-degenerate-workloads">Adversarial and degenerate workloads</h3>
+<p>Velarium’s execution model takes into account the risk of DoS attacks and natural bursts of usage hammering specific contract or address (liquidations, airdrops, mints).</p>
+<p>During periods of natural high contention, the system deepens and narrows the pipeline, attempting to retain the aggregate total throughput. As the contended workload reduces the immediate throughput, the pipeline continues to process other unrelated transactions. Once the contended region passes, the system is now able to commit those transactions in a quick burst.</p>
+<p>For long naturally contended workloads, like a meme coin rush, the system employs robust observability tools and can detect contested state or contract domains that cause the workflow to narrow. It can then report back with specific advisories about the incoming traffic that the operator may act on. The system is able to advise how to reorder the incoming traffic to have a strictly better performance envelope both in latency and throughput, without making any participant worse off.</p>
+<p>Adversarial workloads are also detected. The system can detect if it was saturated by single or multiple lanes of degenerate traffic and can be tweaked to confine them to specific envelopes, as a matter of policy or at runtime.</p>
+<h3 id="contract-analysis-and-synthesis">Contract analysis and synthesis</h3>
+<p>Each contract is JIT re-compiled into two artifacts that facilitate the requirements and provide the services of other parts of the system (* wording?).</p>
+<p>The first one is the contract analysis data. Velarium extracts information about state access profile, the data that the scheduler can later use. It analyses what addresses are going to be accessed, when, if there are conditions that affect the accesses, and it provides the tools for the scheduler to compute the access list.</p>
+<p>The second artifact is the natively recompiled contract with cooperation machinery, chain semantics (e.g. gas calculation) and execution trace (in case of zk) embedded within it, while simultaneously stripping the source bytecode ISA machinery. This serves several purposes:</p>
+<ul>
+<li>Better per core performance. By recompiling the contract into native code, it can be executed much faster, improving per-core performance.</li>
+<li>Enables scheduler cooperation. This is required to be able to allow transactions to pause, resume, on phase boundaries or to be scheduled in special execution phases. It also reduces the operating system involvement in program’s execution, further reducing overhead.</li>
+<li>Embeds and optimizes chain semantics. This is particularly important for zero-knowledge systems, that generate heavy execution traces for the proof system. By embedding the trace emission within the contract logic, the CPU is able to increase its own pipeline saturation, greatly increasing the performance and shadowing much of the trace generation.
+Non zk systems also enjoy increased performance from embedding gas calculations, just to a lesser extent.</li>
+</ul>
+<p>Velarium targets EVM as the first bytecode language to support, but it potentially supports any bytecode: RISC-V, Move, WASM, etc. It intentionally separates source bytecode processing from analysis and compilation through an own intermediary representation.</p>
+<h3 id="highly-optimized-and-hardware-aware">Highly optimized and hardware aware</h3>
+<p>Special care was taken in designing Velarium to be both algorithmically efficient and to map well onto real hardware. Data locality, cache efficiency, memory and I/O traffic are all taken into account.</p>
+<p>State is managed integrally with the execution, making sure that hot state is kept in CPU caches most of the time for the fastest access possible. Cold state accesses, when it needs to be fetched from network or disk, and even warm accesses, when it is fetched from memory, are shadowed by compute from other transactions, effectively hiding state access latency.</p>
+<p>The cluster and system topology are designed so that network usage scales as close to linearly as possible with cluster and machine size. Velarium actively uses data streaming, reducing the number of packets in flight, ensuring that network bandwidth, rather than message management, stays the limiting factor.</p>
+
+      </div>
+    </div>
+    <div class="col-2"></div>
+  </div>
+  <div class="row postnav">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <div class="col-6 left"></div>
+      <div class="col-6 right"></div>
+    </div>
+    <div class="col-2"></div>
+  </div>
+  </div>
+  
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8 shares center">
+        <ul>
+            <li><a href = "https://www.linkedin.com/sharing/share-offsite/?url=http://frontier-ring.github.io/notes/note1/" alt = "Share on LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+              </svg></a></li>
+            <li><a href="http://www.facebook.com/sharer.php?u=http://frontier-ring.github.io/notes/note1/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+              </svg></a></li>
+            <li><a href = "https://t.me/share/url?url=http://frontier-ring.github.io/notes/note1/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09"/>
+              </svg></a></li>
+            <li><a href= "https://api.whatsapp.com/send?text=http://frontier-ring.github.io/notes/note1/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+              </svg></a></li>
+        </ul>
+    </div>
+    <div class="col-2"></div>
+</div>
+
+
+
+
+
+
+  </div> <!-- END CONTAINER-->
+  <footer class="row footer"><p>Сreated in 2026 for fun. Powered by <a href="https://getzola.org/">zola</a> and <a href="https://github.com/kuznetsov17/minimal-dark">minimal-dark</a></p>
+</footer>
+
+  <script src = "http://frontier-ring.github.io/js/colortheme.js" nonce=""></script>
+  <script src = "http://frontier-ring.github.io/js/init.js" nonce=""></script>
+</body>
+</html>

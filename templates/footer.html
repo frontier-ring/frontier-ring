@@ -1,0 +1,4 @@
+{% if page.extra.show_copyright or section.extra.show_copyright or term is defined %}
+{%- set YEAR = now() | date(format="%Y") -%}
+    <footer class="row footer">{{ config.extra.copyright_string | replace (from="%YEAR%", to=YEAR) | markdown | safe }}</footer>
+{% endif %}

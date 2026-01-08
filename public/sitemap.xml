@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>http://frontier-ring.github.io/</loc>
+    </url>
+    <url>
+        <loc>http://frontier-ring.github.io/docs/</loc>
+        <lastmod>2024-01-23</lastmod>
+    </url>
+    <url>
+        <loc>http://frontier-ring.github.io/features/</loc>
+        <lastmod>2024-01-23</lastmod>
+    </url>
+    <url>
+        <loc>http://frontier-ring.github.io/notes/</loc>
+    </url>
+    <url>
+        <loc>http://frontier-ring.github.io/notes/note1/</loc>
+        <lastmod>2026-01-05</lastmod>
+    </url>
+    <url>
+        <loc>http://frontier-ring.github.io/notes/page/1/</loc>
+    </url>
+    <url>
+        <loc>http://frontier-ring.github.io/page/1/</loc>
+    </url>
+    <url>
+        <loc>http://frontier-ring.github.io/tags/</loc>
+    </url>
+    <url>
+        <loc>http://frontier-ring.github.io/tags/announcement/</loc>
+    </url>
+</urlset>

@@ -1,0 +1,60 @@
+{% if page is defined %}
+    {% set title = page.title %}
+    {% set dsc = page.description %}
+  {% elif section is defined %} 
+    {% set title = section.title %}
+    {% set dsc = section.description %} 
+  {% elif term is defined %}
+    {% set title = "tags" ~ '/' ~ term.name %}
+  {% else %} 
+    {% set title = "UNDEFINED TITLE" %}
+  {% endif %}
+
+{% set cdn_version = now() | date(format="%d%m%Y%H%M%S") %}
+{% if section.path is defined %} {% set pth = section.path %}
+{% elif term is defined %}
+{% set pth = title %}
+{% else %}
+{% if current_path is defined %}
+ {% set pth = current_path %} 
+{% else %}
+ {% set pth = " " %}
+{% endif %}
+{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head
+  data-base-url="{{config.base_url | safe }}"
+  data-build-search-index="{{config.build_search_index | safe}}">
+
+  <meta charset="utf-8">
+  <title>{{ title }}</title>
+{% if dsc is not defined %}
+  <meta name="description" content="{{ config.extra.description }}">  
+{% else %}
+  <meta name="description" content="{{ dsc }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+{% endif %}
+  <meta name="author" content="{{config.extra.author}}">
+  {% if page.extra.keywords is defined %}<meta name="keywords" content="{{ page.extra.keywords }}">{% endif %}
+  <link type="text/css" rel="stylesheet" href="{{config.base_url | safe }}css/simple-grid.css?v={{ cdn_version }}">
+  <link type="text/css" rel="stylesheet" href="{{config.base_url | safe }}css/main.css?v={{ cdn_version }}">
+  <link type="text/css" rel="stylesheet" href="{{config.base_url | safe }}css/print.css?v={{ cdn_version }}" media="print">
+  <link rel="icon" type="image/png" href="{{config.base_url | safe }}images/favicon.webp">
+  {% if page.extra.printable or section.extra.printable %}
+  <script src = "{{config.base_url | safe }}js/print.js" nonce="{{config.extra.nonce}}"></script>
+  {% endif %}
+  {% if config.extra.stats and config.mode != 'serve' %}
+  <script async src="{{config.extra.stats.script_src}}" data-website-id="{{config.extra.stats.site_id}}"></script>
+  {% endif %}
+</head>
+<body>
+  <div class="container body">
+    {% include "header.html" %}
+    {% block content %} {% endblock content %}
+  </div> <!-- END CONTAINER-->
+  {% include "footer.html" %}
+  <script src = "{{config.base_url | safe }}js/colortheme.js" nonce="{{config.extra.nonce}}"></script>
+  <script src = "{{config.base_url | safe }}js/init.js" nonce="{{config.extra.nonce}}"></script>
+</body>
+</html>

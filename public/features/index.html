@@ -1,0 +1,353 @@
+
+    
+    
+  
+
+
+
+
+  
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head
+  data-base-url="http://frontier-ring.github.io/"
+  data-build-search-index="true">
+
+  <meta charset="utf-8">
+  <title>Features</title>
+
+  <meta name="description" content="Some theme features">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="zola, theme">
+  <link type="text/css" rel="stylesheet" href="http://frontier-ring.github.io/css/simple-grid.css?v=08012026144239">
+  <link type="text/css" rel="stylesheet" href="http://frontier-ring.github.io/css/main.css?v=08012026144239">
+  <link type="text/css" rel="stylesheet" href="http://frontier-ring.github.io/css/print.css?v=08012026144239" media="print">
+  <link rel="icon" type="image/png" href="http://frontier-ring.github.io/images/favicon.webp">
+  
+  
+</head>
+<body>
+  <div class="container body">
+        <div class="row header"> <!-- START HEADER -->
+      <div class="col-2 left">
+        <div id="logo-img">
+          <img src="http://frontier-ring.github.io/images/logo.webp">
+	      </div>
+      </div>
+      <div class="col-10 right">
+        <div id="menu-wrapper">
+          <div id="cSwitch"><a href="#" id="themeIcon"></a></div>
+          <div id="topmenu">
+            <ul>
+            
+              <li><a href="http://frontier-ring.github.io/" class="topmenu">index</a></li>
+            
+              <li><a href="http://frontier-ring.github.io/docs" class="topmenu">docs</a></li>
+            
+              <li><a href="http://frontier-ring.github.io/features" class="topmenu active">features</a></li>
+            
+              <li><a href="http://frontier-ring.github.io/notes" class="topmenu">notes</a></li>
+            
+            </ul>
+          </div><div id="searchBox">  
+            <label for="search"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg></label>
+            <input id="searchInput" name="search">
+          </div></div>
+      </div>
+    </div><!-- END HEADER --><div class="row">
+      <div class="col-12">
+          <div id="sResults">
+            <ul id="sResultsUL" class="search-results">
+            </ul>
+          </div>
+      </div>
+    </div>
+    <script src="http://frontier-ring.github.io/elasticlunr.min.js"></script>
+    <script src="http://frontier-ring.github.io/js/search.js"></script>
+    
+  <div class="row">
+    <div class="col-12 center"></div>
+  </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8 left" id="postcontent">
+      <div><h1>Features</h1></div>
+      
+      <div class="singlepost-tags">
+        <ul>
+          
+        </ul>
+      </div><div class="content">
+    
+    <details class="toc">
+      <summary class="toc"><span class="toc-header">Contents</span></summary>
+        <ul class="toc">
+          
+              <li class="toc">
+                  <a href="http://frontier-ring.github.io/features/#general">General</a>
+                  
+              </li>
+          
+              <li class="toc">
+                  <a href="http://frontier-ring.github.io/features/#light-mode">Light mode</a>
+                  
+              </li>
+          
+              <li class="toc">
+                  <a href="http://frontier-ring.github.io/features/#important">Important</a>
+                  
+              </li>
+          
+              <li class="toc">
+                  <a href="http://frontier-ring.github.io/features/#comments">Comments</a>
+                  
+              </li>
+          
+              <li class="toc">
+                  <a href="http://frontier-ring.github.io/features/#page-configurations">Page configurations</a>
+                  
+              </li>
+          
+              <li class="toc">
+                  <a href="http://frontier-ring.github.io/features/#blog">Blog</a>
+                  
+              </li>
+          
+              <li class="toc">
+                  <a href="http://frontier-ring.github.io/features/#search">Search</a>
+                  
+              </li>
+          
+              <li class="toc">
+                  <a href="http://frontier-ring.github.io/features/#config-toml-extras">config.toml extras</a>
+                  
+              </li>
+          
+              <li class="toc">
+                  <a href="http://frontier-ring.github.io/features/#timeline">timeline</a>
+                  
+              </li>
+          
+              <li class="toc">
+                  <a href="http://frontier-ring.github.io/features/#callouts">Callouts</a>
+                  
+              </li>
+          
+              <li class="toc">
+                  <a href="http://frontier-ring.github.io/features/#mermaid">Mermaid</a>
+                  
+              </li>
+          
+          </ul>
+        </details>    
+          
+          <h1 id="general">General</h1>
+<p>I am not the best webmaster, but should be somewhat responsive.
+I intentionally using the bigger fonts to make, feel free to change it in main.css</p>
+<h1 id="light-mode">Light mode</h1>
+<p>Now light mode also supported.</p>
+<h1 id="important">Important</h1>
+<p>Please make sure to set up your base_url with trailing slash:</p>
+<pre data-lang="toml" class="language-toml z-code"><code class="language-toml" data-lang="toml"><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">base_url</span></span> <span class="z-punctuation z-definition z-key-value z-toml">=</span> <span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>https://kuznetsov17.github.io/minimal-dark/<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span>
+</span></code></pre>
+<h1 id="comments">Comments</h1>
+<p>Theme supports <a href="https://giscuss.app">Giscuss</a> for comments. The configuration is done via config.toml. Here you can see the example section used for this page deployment:</p>
+<pre data-lang="toml" class="language-toml z-code"><code class="language-toml" data-lang="toml"><span class="z-source z-toml"><span class="z-punctuation z-definition z-table z-begin z-toml">[</span><span class="z-meta z-tag z-table z-toml"><span class="z-entity z-name z-table z-toml">extra</span><span class="z-punctuation z-separator z-table z-toml">.</span><span class="z-entity z-name z-table z-toml">giscus</span></span><span class="z-punctuation z-definition z-table z-end z-toml">]</span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">data_repo</span></span><span class="z-punctuation z-definition z-key-value z-toml">=</span><span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>kuznetsov17/minimal-dark<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">data_repo_id</span></span><span class="z-punctuation z-definition z-key-value z-toml">=</span><span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>R_kgDOLIfXYA<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">data_category</span></span><span class="z-punctuation z-definition z-key-value z-toml">=</span><span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>General<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">data_category_id</span></span><span class="z-punctuation z-definition z-key-value z-toml">=</span><span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>DIC_kwDOLIfXYM4Ccn56<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">data_mapping</span></span><span class="z-punctuation z-definition z-key-value z-toml">=</span><span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>title<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">data_strict</span></span><span class="z-punctuation z-definition z-key-value z-toml">=</span><span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>0<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">data_reactions_enabled</span></span><span class="z-punctuation z-definition z-key-value z-toml">=</span><span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>0<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">data_emit_metadata</span></span><span class="z-punctuation z-definition z-key-value z-toml">=</span><span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>0<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">data_input_position</span></span><span class="z-punctuation z-definition z-key-value z-toml">=</span><span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>top<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">data_theme</span></span><span class="z-punctuation z-definition z-key-value z-toml">=</span><span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>//kuznetsov17.github.io/minimal-dark/css/gs_dark.css<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">data_lang</span></span><span class="z-punctuation z-definition z-key-value z-toml">=</span><span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>en<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">crossorigin</span></span><span class="z-punctuation z-definition z-key-value z-toml">=</span><span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>anonymous<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">nonce</span></span><span class="z-punctuation z-definition z-key-value z-toml">=</span><span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span><span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span>
+</span></code></pre>
+<h1 id="page-configurations">Page configurations</h1>
+<p>Customize the page blocks by setting configuration in <strong>[extra]</strong> section:</p>
+<pre data-lang="toml" class="language-toml z-code"><code class="language-toml" data-lang="toml"><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">show_copyright</span></span> <span class="z-punctuation z-definition z-key-value z-toml">=</span> <span class="z-constant z-language z-toml">true</span><span class="z-invalid z-illegal z-trailing z-toml"> / false # enables / disables footer with copyright</span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">show_comments</span></span> <span class="z-punctuation z-definition z-key-value z-toml">=</span> <span class="z-constant z-language z-toml">true</span><span class="z-invalid z-illegal z-trailing z-toml"> / false # enables / disables comments</span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">show_shares</span></span> <span class="z-punctuation z-definition z-key-value z-toml">=</span> <span class="z-constant z-language z-toml">true</span><span class="z-invalid z-illegal z-trailing z-toml"> / false # enables / disables section with social share buttons</span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">show_toc</span></span> <span class="z-punctuation z-definition z-key-value z-toml">=</span> <span class="z-constant z-language z-toml">true</span><span class="z-invalid z-illegal z-trailing z-toml"> / false # enables / disable TOC</span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">show_date</span></span> <span class="z-punctuation z-definition z-key-value z-toml">=</span> <span class="z-constant z-language z-toml">true</span><span class="z-invalid z-illegal z-trailing z-toml"> / false # displays publication date in page</span>
+</span></code></pre>
+<h1 id="blog">Blog</h1>
+<p>I am using this theme for my <a href="https://viku.me/notes/">notes</a>, or probably blog.
+The section template supports pagination, tags, sorts the pages by publication date. You may see the working example <a href="http://frontier-ring.github.io/notes/">here</a></p>
+<h1 id="search">Search</h1>
+<p>The theme supports the search using <a href="http://elasticlunr.com">elasticrunrjs</a>. To enable the search, you will need the following configuration in <strong>config.toml</strong>:</p>
+<pre data-lang="toml" class="language-toml z-code"><code class="language-toml" data-lang="toml"><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">build_search_index</span></span> <span class="z-punctuation z-definition z-key-value z-toml">=</span> <span class="z-constant z-language z-toml">true</span>
+</span><span class="z-source z-toml">
+</span><span class="z-source z-toml"><span class="z-punctuation z-definition z-table z-begin z-toml">[</span><span class="z-meta z-tag z-table z-toml"><span class="z-entity z-name z-table z-toml">search</span></span><span class="z-punctuation z-definition z-table z-end z-toml">]</span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">index_format</span></span> <span class="z-punctuation z-definition z-key-value z-toml">=</span> <span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>elasticlunr_json<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span>
+</span></code></pre>
+<h1 id="config-toml-extras">config.toml extras</h1>
+<pre data-lang="toml" class="language-toml z-code"><code class="language-toml" data-lang="toml"><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">author</span></span> <span class="z-punctuation z-definition z-key-value z-toml">=</span> <span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>John Doe<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span> <span class="z-comment z-line z-number-sign z-toml"><span class="z-punctuation z-definition z-comment z-toml">#</span> author. Will be puth in page metadata</span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">description</span></span> <span class="z-punctuation z-definition z-key-value z-toml">=</span> <span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>Some description, if you somehow didn&#39;t set it in page / section settings<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">logo_src</span></span> <span class="z-punctuation z-definition z-key-value z-toml">=</span> <span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>images/logo.svg<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span> <span class="z-comment z-line z-number-sign z-toml"><span class="z-punctuation z-definition z-comment z-toml">#</span> logo src</span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">avatar_src</span></span> <span class="z-punctuation z-definition z-key-value z-toml">=</span> <span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>images/avatar.png<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span> <span class="z-comment z-line z-number-sign z-toml"><span class="z-punctuation z-definition z-comment z-toml">#</span> avatar src</span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">index_page</span></span><span class="z-punctuation z-definition z-key-value z-toml">=</span><span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>index<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span> <span class="z-comment z-line z-number-sign z-toml"><span class="z-punctuation z-definition z-comment z-toml">#</span> name of the index page. Should be one of top_menu to make things work</span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">top_menu</span></span> <span class="z-punctuation z-definition z-key-value z-toml">=</span> <span class="z-punctuation z-definition z-array z-begin z-toml">[</span><span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>index<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span><span class="z-punctuation z-separator z-array z-toml">,</span><span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>features<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span><span class="z-punctuation z-separator z-array z-toml">,</span><span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>notes<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span><span class="z-punctuation z-definition z-array z-end z-toml">]</span> <span class="z-comment z-line z-number-sign z-toml"><span class="z-punctuation z-definition z-comment z-toml">#</span> Menu items</span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">copyright_string</span></span> <span class="z-punctuation z-definition z-key-value z-toml">=</span> <span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>Сreated by John Doe in 2024 – %YEAR% for fun.<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span> <span class="z-comment z-line z-number-sign z-toml"><span class="z-punctuation z-definition z-comment z-toml">#</span> footer content. %YEAR% will be replaced with current year</span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">nonce</span></span> <span class="z-punctuation z-definition z-key-value z-toml">=</span> <span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>${SOME_HASH_VALUE}<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span> <span class="z-comment z-line z-number-sign z-toml"><span class="z-punctuation z-definition z-comment z-toml">#</span> used for JavaScript src nonce</span>
+</span></code></pre>
+<h1 id="timeline">timeline</h1>
+
+
+  
+<div id="timeline-content">
+    <ul class="timeline">
+        
+      <li class="event" data-date="Jul-2023">
+        <h3><p>Lorem Ipsum Event</p>
+</h3>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      </li>
+      
+      <li class="event" data-date="Jun-2022">
+        <h3><p>Lorem Ipsum event 2</p>
+</h3>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+      </li>
+      
+    </ul>
+  </div>
+<h1 id="callouts">Callouts</h1>
+<p>
+
+  
+<div class="co-container">
+    <div class="callout warning">
+        <span class="co-img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
+  </svg></span>
+        <span class="co-body">
+            <p>This is an example of <strong>Warning</strong> callout. <a href="#">Some link</a></p>
+
+        </span>
+    </div>
+</div>
+
+
+
+    
+   
+<div class="co-container">
+    <div class="callout alert">
+        <span class="co-img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1z"/>
+    </svg></span>
+        <span class="co-body">
+            <p>This is an example of <strong>Alert</strong> callout. <a href="#">Some link</a></p>
+
+        </span>
+    </div>
+</div>
+
+
+
+   
+
+<div class="co-container">
+    <div class="callout info">
+        <span class="co-img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+  </svg></span>
+        <span class="co-body">
+            <p>This is an example of <strong>Info</strong> callout. <a href="#">Some link</a></p>
+
+        </span>
+    </div>
+</div>
+
+</p>
+<h1 id="mermaid">Mermaid</h1>
+<p>Read more on how to use mermaid in their <a href="https://mermaid.js.org/syntax/examples.html">documentation</a>
+<pre class="mermaid">
+gitGraph
+       commit
+       commit
+       branch develop
+       checkout develop
+       commit
+       commit
+       checkout main
+       merge develop
+       commit
+       commit
+</pre>
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+mermaid.initialize({
+    startOnLoad:true, 
+    theme: 'neutral',
+});</script></p>
+<pre class="mermaid">
+graph LR
+    A[Square Rect] -- Link text --> B((Circle))
+    A --> C(Round Rect)
+    B --> D{Rhombus}
+    C --> D
+</pre>
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+mermaid.initialize({
+    startOnLoad:true, 
+    theme: 'neutral',
+});</script>
+      </div>
+    </div>
+    <div class="col-2"></div>
+  </div>
+  <div class="row postnav">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <div class="col-6 left"></div>
+      <div class="col-6 right"></div>
+    </div>
+    <div class="col-2"></div>
+  </div>
+  </div>
+  
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8 shares center">
+        <ul>
+            <li><a href = "https://www.linkedin.com/sharing/share-offsite/?url=http://frontier-ring.github.io/features/" alt = "Share on LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+              </svg></a></li>
+            <li><a href="http://www.facebook.com/sharer.php?u=http://frontier-ring.github.io/features/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+              </svg></a></li>
+            <li><a href = "https://t.me/share/url?url=http://frontier-ring.github.io/features/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09"/>
+              </svg></a></li>
+            <li><a href= "https://api.whatsapp.com/send?text=http://frontier-ring.github.io/features/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+              </svg></a></li>
+        </ul>
+    </div>
+    <div class="col-2"></div>
+</div>
+
+
+
+
+
+
+  </div> <!-- END CONTAINER-->
+  <footer class="row footer"><p>Сreated in 2026 for fun. Powered by <a href="https://getzola.org/">zola</a> and <a href="https://github.com/kuznetsov17/minimal-dark">minimal-dark</a></p>
+</footer>
+
+  <script src = "http://frontier-ring.github.io/js/colortheme.js" nonce=""></script>
+  <script src = "http://frontier-ring.github.io/js/init.js" nonce=""></script>
+</body>
+</html>

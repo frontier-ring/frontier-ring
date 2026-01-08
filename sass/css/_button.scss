@@ -1,0 +1,13 @@
+a.button {
+  display: inline-block;
+  padding: 0.5em 1em;
+  background-color: #1515af;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: darken(#1515af, 10%);
+  }
+}

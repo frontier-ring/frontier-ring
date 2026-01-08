@@ -1,0 +1,32 @@
+# The URL the site will be built for
+base_url = "http://frontier-ring.github.io/"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = true
+
+taxonomies = [
+    {name = "tags"},
+]
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+highlight_theme = "css"
+
+[search]
+index_format = "elasticlunr_json"
+
+[extra]
+index_page="index"
+top_menu = ["index", "docs", "features","notes"]
+copyright_string = "Сreated in %YEAR% for fun. Powered by [zola](https://getzola.org/) and [minimal-dark](https://github.com/kuznetsov17/minimal-dark)"
+author = "John Doe"
+avatar_src = "images/avatar.png"
+logo_src = "images/logo.webp"
+nonce=""
+description = "Some Description"
+search_enabled = true

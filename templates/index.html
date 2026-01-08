@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row" id="spacer"></div>
+<div class="row">
+  <div class="col-1"></div>
+  <div class="col-10">
+    <div id="index-content">
+      <div id="indextext" class="content">
+        <!-- {{ section.content | safe }} -->
+        <h1>Velarium — parallel execution fabric for your system.</h1>
+        <p>Drop-in execution fabric that makes your system fast, scalable, and predictable—from public chains to air-gapped and highly regulated deployments.</p>
+        <p>Velarium is an execution module you run inside your own stack. You keep your governance model and architecture; Velarium brings horizontal scale, JIT-optimized per-core performance, and policy-driven parallelism.</p>
+        <a class="button center">Talk to us</a>
+        <h2>Features</h2>
+        <div>
+          <div class="row">
+            <div class="col-6">
+              <h3> Your governance. Your sovereignty. Our execution engine.</h3>
+              <p>
+                Velarium is a horizontally scalable execution layer that runs inside your trust boundary—whether that’s a public chain, a private network, or a fully air-gapped deployment. It’s being built to keep your governance model and sovereignty intact: no asset migration, no hosted custody, no giving up control.
+              </p>
+            </div>
+            <div class="col-6">
+              <h3>Horizontal scale without monster boxes.</h3>
+              <p>
+                We’re designing Velarium as an HPC/HFT-inspired execution fabric for chains and coordination systems. The goal: scale out across commodity hardware, not up into overpriced monsters, and independently tune compute, memory, network, and storage to get predictable cost-per-transaction.
+              </p>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <h3>Drop-in upgrade, no rewrite.</h3>
+              <p>
+                Velarium is meant to sit under your existing chain or coordination logic. Keep your contracts, tooling, and governance as-is, while upgrading the execution layer to a parallel, high-performance fabric.
+              </p>
+            </div>
+            <div class="col-6">
+              <h3>JIT contract recompilation for *your* case.</h3>
+              <p>
+                Velarium’s architecture strips away generic VM overhead. Contracts are specialized to your chain, workload, and configuration, compiled into sandboxed native code under a controlled runtime to maximize per-core performance.
+              </p>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <h3>Built to degrade gracefully under adversarial load.</h3>
+              <p>
+                The execution model is explicitly designed to avoid global collapse under pathological or abusive workloads. Our aim is graceful degradation with preserved aggregate throughput and protection for well-behaved traffic.
+              </p>
+            </div>
+            <div class="col-6">
+              <h3>Parallelization policies & sequencer advisories.</h3>
+              <p>
+                Velarium helps your sequencer make smarter decisions. It can emit policy-based advisories to throttle or reshuffle flows within your governance rules, so pathological or abusive patterns don’t drag down everyone else—without breaking fairness.
+              </p>
+          </div>
+        </div>
+        <h2>Where we are now</h2>
+        <p>Velarium is in active R&D / PoC stage. We’re validating the architecture on [on what?]. If you run a chain, sequencer, or critical coordination system and want to experiment with next-gen execution, we’d love to talk.
+        </p>
+        <h2>We want to hear from you</h2>
+        <p>We’re looking for a small number of design partners to shape Velarium’s roadmap and put the architecture through real tests.</p>
+        <ul>
+          <li>You run or are building a <strong>chain, rollup, or sequencer</strong> and are hitting parallelism / hardware cost ceilings.</li>
+          <li>You operate a <strong>regulated or high-assurance system</strong> that needs on-prem or air-gapped execution but can’t accept “just put it in the cloud” answers.</li>
+          <li>You’re exploring <strong>next-gen execution architectures</strong> and want to influence how parallelism, fairness, and governance interact.</li>
+        </ul>
+        <p>If this sounds like you, let’s talk.</p>
+      </div>   
+    </div>
+  </div>
+  <div class="col-1"></div>  
+</div>
+{% endblock %}

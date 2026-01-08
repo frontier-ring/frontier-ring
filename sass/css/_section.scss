@@ -1,0 +1,18 @@
+#taglist ul {
+  list-style-type: none;
+  padding: 0;
+  h4 {
+    padding: 0;
+  }
+}
+
+.readingTime {
+    svg {
+      padding-left: .5em;
+      padding-right: .5em;
+      height: 1em;
+      width: 1em;
+      fill: var(--invis-color);
+      pointer-events: bounding-box;
+    }
+  }

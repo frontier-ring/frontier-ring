@@ -1,0 +1,32 @@
+#index-content {
+    display: table;
+    .table-row {
+      display: table-row;
+      //width: 80%;
+    }
+    .table-cell {
+      display: table-cell;
+      width: auto;
+      vertical-align: middle;
+      padding: 2rem;
+    }
+  }
+  
+  #indextext { 
+    p {
+        font-family: var(--main-font);
+        font-size: var(--main-font-size);
+        text-indent: 0;
+      a {
+        text-decoration: none;
+        border-bottom: 1px solid;
+        padding-bottom: 2px;
+      }
+    }
+  }
+  .avatar {
+    border-radius: 50%;
+  }
+  #spacer {
+    height: 10rem;
+  } 

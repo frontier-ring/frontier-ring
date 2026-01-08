@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col-12 center">
+  <h1>Tag: {{ term.name }}</h1>
+</div>
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-8">
+    <div class="row">
+      <ul class="catlist">
+        {% for page in term.pages %}
+        <li class="catlist"><b><a href="{{ page.permalink }}">
+          {{ page.date | date(format="%e %b %Y") }} <span class="invis">&raquo;</span>
+          {{ page.title }}</a></b> <span class="invis"> &sdot; {{ page.reading_time }} min read</span>
+          {%- if page.description -%}<div class="invis postdesc">{{ page.description }}</div>{%- endif -%}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %} 
